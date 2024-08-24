@@ -5,215 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoPath - Camera</title>
     <link rel="stylesheet" href="camera.css">
+    <script defer src="camera.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <iframe src="music.html" style="display:none;" allow="autoplay"></iframe>
-    <style>
-        /* CSS comes here */
-        #video {
-            border: 1px solid black;
-            width: 320px;
-            height: 240px;
-        }
     
-        #photo {
-            border: 1px solid black;
-            border: 1px solid black;
-            width: 320px;
-            height: 240px;
-        }
-    
-        #canvas {
-            display: none;
-        }
-    
-        .camera {
-            width: 340px;
-            display: inline-block;
-        }
-    
-        .output {
-            width: 340px;
-            display: inline-block;
-        }
-    
-        #startbutton {
-            display: block;
-            position: relative;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: auto;
-            bottom: 40
-            px;
-            padding: 5px;
-            background-color: #6a67ce;
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-            color: rgba(255, 255, 255, 1.0);
-            cursor: pointer;
-        }
-    
-        .contentarea {
-            font-size: 16px;
-            font-family: Arial;
-            text-align: center;
-        }
-        </style>
         <title>Taking Picture</title>
 
-        <script  type="text/javascript">
-       function toggle(id) {
-                    //0 = photo, 1 = video
-        
-                    if (id == 0) {
-                        document.getElementById("pDiv").style.display = "";
-                        document.getElementById("vDiv").style.display = "none";
-        
-                    } else {
-                        document.getElementById("pDiv").style.display = "none";
-                        document.getElementById("vDiv").style.display = "";
-        
-                    }
-                }
-            /* JS comes here */
-            (function() {
-        
-                var width = 320; // We will scale the photo width to this
-                var height = 0; // This will be computed based on the input stream
-        
-                var streaming = false;
-        
-                var video = null;
-                var canvas = null;
-                var photo = null;
-                var startbutton = null;
-        
-
-                function startup() {
-                    video = document.getElementById('video');
-                    canvas = document.getElementById('canvas');
-                    photo = document.getElementById('photo');
-                    startbutton = document.getElementById('startbutton');
-        
-                    navigator.mediaDevices.getUserMedia({
-                            video: true,
-                            audio: false
-                        })
-                        .then(function(stream) {
-                            video.srcObject = stream;
-                            video.play();
-                        })
-                        .catch(function(err) {
-                            console.log("An error occurred: " + err);
-                        });
-        
-                    video.addEventListener('canplay', function(ev) {
-                        if (!streaming) {
-                            height = video.videoHeight / (video.videoWidth / width);
-        
-                            if (isNaN(height)) {
-                                height = width / (4 / 3);
-                            }
-        
-                            video.setAttribute('width', width);
-                            video.setAttribute('height', height);
-                            canvas.setAttribute('width', width);
-                            canvas.setAttribute('height', height);
-                            streaming = true;
-                        }
-                    }, false);
-        
-                    startbutton.addEventListener('click', function(ev) {
-                        takepicture('rate');
-                        ev.preventDefault();
-                    }, false);
-        
-                    clearphoto();
-                }
-        
-        
-                function clearphoto() {
-                    var context = canvas.getContext('2d');
-                    context.fillStyle = "#AAA";
-                    context.fillRect(0, 0, canvas.width, canvas.height);
-        
-                    var data = canvas.toDataURL('image/png');
-                    photo.setAttribute('src', data);
-                }
-               const url = 'get_picture_description';
-                
-               function takepicture(action) {
-                    var context = canvas.getContext('2d');
-                    if (width && height) {
-                        canvas.width = width;
-                        canvas.height = height;
-                        context.drawImage(video, 0, 0, width, height);
-        
-                        var data = canvas.toDataURL('image/png');
-                        var post_data={
-                            "user_id": 1,
-                     "base64_image": data,
-                     "funct": action
-                        };
-                      postData(url, post_data)
-                            .then(data => {
-                                var result= JSON.stringify(data)
-                                console.log('Success:',result);
-        
-                                // Update the points circle
-        
-                                const pointsElement = document.getElementById('result');
-                        if (pointsElement) {
-                            pointsElement.textContent = result; // 
-                        }
-                                
-                            })
-                            .catch((error) => {
-                                console.error('Error:', error);
-                            });
-        
-                        console.log(data); 
-                        photo.setAttribute('src', data);
-                    } else {
-                        clearphoto();
-                    }
-                    toggle(0);
-                }
-         
-        
-        async function postData(url = '', data = {}) {
-            // Default options are marked with *
-            const response = await fetch(url, {
-                method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                mode: 'cors', // no-cors, *cors, same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', // include, *same-origin, omit
-                headers: {
-                    'Content-Type': 'application/json'
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                redirect: 'follow', // manual, *follow, error
-                referrerPolicy: 'no-referrer', // no-referrer, *client
-                body: JSON.stringify(data) // body data type must match "Content-Type" header
-            });
-            return await response.json(); // parses JSON response into native JavaScript objects
-        }
-                window.addEventListener('load', startup, false);
-            })();
-            </script>
-        
 </head>
 
 <body>
     <header>
-        <i class="fas fa-cog settings-icon" onclick="window.location.href='settings.html';"></i>
-        <div class="logo">
-            <img src="ecopath.png" style="width: 200px; margin:0;">
+        <div class="toggle-container">
+            <button id="sort-mode" class="toggle-button active">SORT</button>
+            <button id="rate-mode" class="toggle-button">RATE</button>
         </div>
     </header>
  
 
-
-<div class="contentarea">
+<!-- <div class="contentarea">
 
     <div id="vDiv" class="camera">
         <video id="video">Video stream not available.</video>
@@ -223,20 +32,33 @@
     <div id="pDiv" class="output" onclick="toggle(1)" style="display:none;">
         <img id="photo" alt="The screen capture will appear in this box.">
     </div>
-</div>
+</div> -->
+
     <main>
-        <span id="result"></span>
-       
-        
-        <div id="points-popup" class="popup">
-            <div class="popup-content">
-                <h3>test</h3>
-                <ul>
-                    <li>were supposed to take a picture heres</li>
-                </ul>
+        <div style="display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers children horizontally */
+         " >
+
+                <div id="pDiv"  onclick="toggle(1)" style="display:none;" style="text-align: center;" >
+                    <div >
+                        <img id="photo" alt="The screen capture will appear in this box.">
+                    </div>
+                 </div>
+                 <div style="width: 70%; text-align: center; font-size: x-large;padding-top: 10px;">      
+                    <span id="result"  ></span> 
+                 </div>
+
+        </div>
+
+
+        <div id="vDiv" class="camera-container">
+            <video id="camera-stream" autoplay playsinline></video>
+            <div class="camera-controls">
+                <button id="switch-camera"><i class="fas fa-sync-alt"></i></button>
+                <button id="take-photo"><i class="fas fa-camera"></i></button>
             </div>
         </div>
-        
 
     </main>
 
