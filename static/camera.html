@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoPath - Main</title>
-    <link rel="stylesheet" href="main.css">
+    <title>EcoPath - Camera</title>
+    <link rel="stylesheet" href="camera.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <iframe src="music.html" style="display:none;" allow="autoplay"></iframe>
     <style>
@@ -40,7 +40,9 @@
             position: relative;
             margin-left: auto;
             margin-right: auto;
-            bottom: 36px;
+            margin-top: auto;
+            bottom: 40
+            px;
             padding: 5px;
             background-color: #6a67ce;
             border: 1px solid rgba(255, 255, 255, 0.7);
@@ -55,7 +57,7 @@
             text-align: center;
         }
         </style>
-        <title>My Favorite Sport</title>
+        <title>Taking Picture</title>
 
         <script  type="text/javascript">
        function toggle(id) {
@@ -120,7 +122,7 @@
                     }, false);
         
                     startbutton.addEventListener('click', function(ev) {
-                        takepicture();
+                        takepicture('rate');
                         ev.preventDefault();
                     }, false);
         
@@ -136,9 +138,9 @@
                     var data = canvas.toDataURL('image/png');
                     photo.setAttribute('src', data);
                 }
-               const url = 'http://127.0.0.1:8000/get_picture_description';
+               const url = 'get_picture_description';
                 
-               function takepicture() {
+               function takepicture(action) {
                     var context = canvas.getContext('2d');
                     if (width && height) {
                         canvas.width = width;
@@ -149,7 +151,7 @@
                         var post_data={
                             "user_id": 1,
                      "base64_image": data,
-                     "funct": "rate"
+                     "funct": action
                         };
                       postData(url, post_data)
                             .then(data => {
@@ -223,13 +225,7 @@
 </div>
     <main>
         <span id="result"></span>
-        <h2>EcoPoints</h2>
-        <div class="points-circle">
-            <span id="points"> </span> 
-        </div>        
-        <button class="earn-more"   onClick="takePicture()">
-            take picture
-        </button>
+       
         
         <div id="points-popup" class="popup">
             <div class="popup-content">
@@ -240,19 +236,7 @@
             </div>
         </div>
         
-        <div class="goal-progress">
-            <i class="fas fa-bullseye goal-icon"></i>
-            <div class="progress-bar">
-                <div class="progress" id="goal-progress"></div>
-            </div>
-            <p id="goal-progress-text">0%</p> <!-- This will be updated by JavaScript -->
-        </div>
 
-        <!-- Tip Box Feature -->
-        <div class="tip-box">
-            <h3>Eco Tip</h3>
-            <p>Save water by turning off the tap while brushing your teeth. Every drop counts!</p>
-        </div>
     </main>
 
     <nav class="bottom-nav">
