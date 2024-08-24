@@ -7,7 +7,7 @@ import requests
 
 
 # OpenAI API Key
-api_key = "sk-OkcgR1Bf1Kgz8p9onCdFFI8OpFSTIZJxFr11EWq3jPT3BlbkFJawWrMi5SqvtRaTJ4v-rL1pvb-VoEVyw4sFkHNHs-MA"
+api_key = ""
 headers = {
     "Content-Type": "application/json",
     "Authorization": f"Bearer {api_key}"
