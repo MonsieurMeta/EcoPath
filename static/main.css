@@ -1,0 +1,219 @@
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #7ACC7B;
+    color: #FFFFC9;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+    position: relative;
+}
+
+.settings-icon {
+    margin-top: 4px;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.logo-icon {
+    font-size: 4rem;
+    margin-right: 10px;
+    padding-bottom: 0;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 0;
+    padding-bottom: 0;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.points-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 10px solid #FFFFC9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.points-circle span {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.earn-more {
+    background-color: #FFFFC9;
+    color: #7ACC7B;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.earn-more i {
+    margin-left: 10px;
+}
+
+.earn-more:hover {
+    background-color: #B8E986;
+}
+
+
+.goal-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.goal-icon {
+    font-size: 2rem;
+    color: #FFFFC9;
+    margin-right: 10px;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    background-color: #CCCCCC;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 20px;
+    background-color: #56A661;
+    width: 0%;
+    transition: width 0.5s ease-in-out;
+}
+
+.goal-progress p {
+    font-size: 1rem;
+    color: #FFFFC9;
+    margin-left: 10px;
+}
+
+
+.tip-box {
+    background-color: #B8E986;
+    color: #2C5F2D;
+    padding: 15px;
+    border-radius: 15px;
+    width: 80%;
+    text-align: left;
+}
+
+.tip-box h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.tip-box p {
+    font-size: 1rem;
+    margin: 10px 0 0 0;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #00796b;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-nav .nav-item {
+    color: white;
+    text-align: center;
+    flex: 1;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.bottom-nav .nav-item i {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.bottom-nav .nav-item:hover {
+    background-color: #004d40;
+}
+
+.bottom-nav .main-nav {
+    font-size: 1.2rem;
+    transform: translateY(-10px);
+    background-color: #004d40;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-nav .main-nav i {
+    font-size: 2rem;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #56A661;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    width: 80%;
+    max-width: 400px;
+    color: white;
+}

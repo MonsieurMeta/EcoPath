@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPath - Main</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <iframe src="music.html" style="display:none;" allow="autoplay"></iframe>
+</head>
+<body>
+    <header>
+        <i class="fas fa-cog settings-icon" onclick="window.location.href='settings.html';"></i>
+        <div class="logo">
+            <img src="ecopath.png" style="width: 200px; margin:0;">
+        </div>
+    </header>
+
+    <main>
+        <h2>EcoPoints</h2>
+        <div class="points-circle">
+            <span id="points"></span> 
+        </div>        
+        <button class="earn-more">
+            Earn More Points
+        </button>
+        
+        <div id="points-popup" class="popup">
+            <div class="popup-content">
+                <h3>Ways to Earn Points</h3>
+                <ul>
+                    <li>10 meter = 1 point</li>
+                    <li>1 recycled trash (via camera) = 5 points</li>
+                    <li>Complete your goal for a 25% bonus</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="goal-progress">
+            <i class="fas fa-bullseye goal-icon"></i>
+            <div class="progress-bar">
+                <div class="progress" id="goal-progress"></div>
+            </div>
+            <p id="goal-progress-text">0%</p> <!-- This will be updated by JavaScript -->
+        </div>
+
+        <!-- Tip Box Feature -->
+        <div class="tip-box">
+            <h3>Eco Tip</h3>
+            <p>Save water by turning off the tap while brushing your teeth. Every drop counts!</p>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="tracker.html" class="nav-item">
+            <i class="fas fa-route"></i>
+            <span>Tracker</span>
+        </a>
+        <a href="goal.html" class="nav-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Goals</span>
+        </a>
+        <a href="main.html" class="nav-item main-nav">
+            <i class="fas fa-star"></i>
+            <span>Points</span>
+        </a>
+        <a href="camera.html" class="nav-item">
+            <i class="fas fa-camera"></i>
+            <span>Camera</span>
+        </a>
+        <a href="garden.html" class="nav-item">
+            <i class="fas fa-seedling"></i>
+            <span>Garden</span>
+        </a>
+    </nav>
+
+    <script src="main.js"></script>
+</body>
+</html>

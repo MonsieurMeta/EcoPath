@@ -1,0 +1,65 @@
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #7ACC7B;
+    color: #FFFFC9;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+    position: relative;
+}
+
+.back-icon {
+    margin-top: 4px;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 0;
+    padding-bottom: 0;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Tip Box Feature */
+.tip-box {
+    background-color: #B8E986;
+    color: #2C5F2D;
+    padding: 15px;
+    border-radius: 15px;
+    width: 80%;
+    text-align: left;
+}
+
+.tip-box h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.tip-box p {
+    font-size: 1rem;
+    margin: 10px 0 0 0;
+}

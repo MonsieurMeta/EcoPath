@@ -1,0 +1,124 @@
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #7ACC7B;
+    color: #FFFFC9;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+    position: relative;
+}
+
+.settings-icon {
+    margin-top: 4px;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.goal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.goal-button {
+    background-color: #FFFFC9;
+    color: #2C5F2D;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 200px;
+    text-align: center;
+}
+
+.goal-button:hover {
+    background-color: #B8E986;
+}
+
+p {
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+
+.custom-goal {
+    background-color: #FFFFC9;
+    color: #2C5F2D;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    width: 160px;
+    text-align: center;
+}
+
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #00796b;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-nav .nav-item {
+    color: white;
+    text-align: center;
+    flex: 1;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.bottom-nav .nav-item i {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.bottom-nav .nav-item:hover {
+    background-color: #004d40;
+}
+
+.bottom-nav .main-nav {
+    font-size: 1.2rem;
+    transform: translateY(-10px);
+    background-color: #004d40;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-nav .main-nav i {
+    font-size: 2rem;
+}

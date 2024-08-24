@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPath - Enter Username</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="video-background">
+        <video id="bg-video" autoplay loop muted>
+            <source src="forest-bg.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <header>
+        <h1>EcoPath</h1>
+        <p>Paving the Way to a Greener Planet</p>
+    </header>
+
+    <section id="login-section">
+        <h2>Pick a Username</h2>
+        <form id="login-form" onsubmit="handleEnter(event)">
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            <button type="submit">Enter</button>
+        </form>
+    </section>
+
+    <script src="index.js"></script>
+
+</body>
+</html>

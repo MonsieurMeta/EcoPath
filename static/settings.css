@@ -1,0 +1,128 @@
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #7ACC7B;
+    color: #FFFFC9;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #7ACC7B;
+    color: #FFFFC9;
+}
+
+.back-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 2rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.option-box {
+    background-color: #FFFFC9;
+    color: #2C5F2D;
+    border-radius: 25px;
+    padding: 15px 20px;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.toggle-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #8BC34A;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+input + .slider {
+    background-color: #F44336;
+}
+
+input + .slider:before {
+    transform: translateX(0);
+}
+
+.settings-button {
+    background-color: #FFFFC9;
+    color: #2C5F2D;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    margin: 10px 0;
+    cursor: pointer;
+    width: 80%;
+    max-width: 400px;
+    transition: background-color 0.3s ease;
+}
+
+.settings-button:hover {
+    background-color: #B8E986;
+}

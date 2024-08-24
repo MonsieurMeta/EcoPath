@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPath - Goal Progress</title>
+    <link rel="stylesheet" href="goal-progress.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <i class="fas fa-cog settings-icon" onclick="window.location.href='settings.html';"></i>
+    </header>
+
+    <main>
+        <h2>GO, GO, GO!</h2>
+        <div class="goal-display">
+            <span id="goal-value"></span> 
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <p id="progress-text"></p>
+        </div>
+
+        <h3 class="analysis-title">Analysis</h3>
+
+        <div class="chart-container">
+            <canvas id="goalChart"></canvas> 
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="tracker.html" class="nav-item">
+            <i class="fas fa-route"></i>
+            <span>Tracker</span>
+        </a>
+        <a href="goal.html" class="nav-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Goals</span>
+        </a>
+        <a href="main.html" class="nav-item main-nav">
+            <i class="fas fa-star"></i>
+            <span>Points</span>
+        </a>
+        <a href="camera.html" class="nav-item">
+            <i class="fas fa-camera"></i>
+            <span>Camera</span>
+        </a>
+        <a href="garden.html" class="nav-item">
+            <i class="fas fa-seedling"></i>
+            <span>Garden</span>
+        </a>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="goal-progress.js"></script>
+
+</body>
+</html>

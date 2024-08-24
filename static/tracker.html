@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPath - Tracker</title>
+    <link rel="stylesheet" href="tracker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7aXuEmk0P2k3GPZKklpY3gCxLF1W7YqY"></script>
+</head>
+<body>
+    <header>
+        <i class="fas fa-cog settings-icon" onclick="window.location.href='settings.html';"></i>
+    </header>
+
+    <main>
+        <h1>Tracker</h1>
+
+        <div class="speed-mode-container">
+            <div class="speed-display">
+                <span id="speed-value">0</span> m/s
+            </div>
+            <div class="mode-display">
+                <span id="mode-value">Stationary</span>
+            </div>
+        </div>
+
+        <h2>Meters Today</h2>
+        <div>
+            <button id="meters-today">0</button>
+        </div>
+
+        <p class="conversion-info">*Your meter counter converts into EcoPoints every day</p>
+        <p id="reset-info" class="conversion-info">*Your meters will reset in 24 hours, 0 minutes, and 0 seconds</p>
+
+        <div class="chart-container">
+            <canvas id="activityChart"></canvas>
+        </div>
+
+        <!-- Embedded Map Section -->
+        <div id="map-container" class="map-container">
+            <div id="map" style="height: 400px; width: 100%;"></div>
+            <p id="distance-traveled">Distance Traveled: 0 meters</p>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <a href="tracker.html" class="nav-item">
+            <i class="fas fa-route"></i>
+            <span>Tracker</span>
+        </a>
+        <a href="goal.html" class="nav-item">
+            <i class="fas fa-bullseye"></i>
+            <span>Goals</span>
+        </a>
+        <a href="main.html" class="nav-item main-nav">
+            <i class="fas fa-star"></i>
+            <span>Points</span>
+        </a>
+        <a href="camera.html" class="nav-item">
+            <i class="fas fa-camera"></i>
+            <span>Camera</span>
+        </a>
+        <a href="garden.html" class="nav-item">
+            <i class="fas fa-seedling"></i>
+            <span>Garden</span>
+        </a>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="tracker.js"></script>
+
+</body>
+</html>
