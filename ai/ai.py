@@ -7,7 +7,7 @@ import requests
 
 
 # OpenAI API Key
-api_key = "sk-BVwwyOCYSBJQhmyAYM_gVQdScYszYMNZqtQEY5v5hFT3BlbkFJEGCb7jD8m0uqqhfc5JYlLQwOa-qbjUpVPExSahJsAA"
+api_key = "sk-OkcgR1Bf1Kgz8p9onCdFFI8OpFSTIZJxFr11EWq3jPT3BlbkFJawWrMi5SqvtRaTJ4v-rL1pvb-VoEVyw4sFkHNHs-MA"
 headers = {
     "Content-Type": "application/json",
     "Authorization": f"Bearer {api_key}"
@@ -44,6 +44,7 @@ async def describe_base64_picture(uid:int,base64_image:str,funct:str):
         "max_tokens": 500
     }
     response=requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
+
 
     result=response.json()["choices"][0]["message"]["content"]
     #async def rate_trash(materials: str, trash_type: str):
