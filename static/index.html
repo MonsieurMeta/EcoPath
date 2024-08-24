@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoPath - Enter Username</title>
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
     <div class="video-background">
         <video id="bg-video" autoplay loop muted>
@@ -20,14 +22,16 @@
     </header>
 
     <section id="login-section">
-        <h2>Pick a Username</h2>
+        <h2>Login</h2>
         <form id="login-form" onsubmit="handleEnter(event)">
             <input type="text" id="username" name="username" placeholder="Enter your username" required>
-            <button type="submit">Enter</button>
+            <input type="text" id="password" name="password" placeholder="Enter your password" required>
+            <button onClick="wo" type="submit">Enter</button>
         </form>
     </section>
 
     <script src="index.js"></script>
 
 </body>
+
 </html>
