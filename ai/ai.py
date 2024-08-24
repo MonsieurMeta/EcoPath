@@ -1,13 +1,13 @@
 import asyncio
 import base64
 import requests
- 
+import os
 
 #url='https://www.umweltbundesamt.de/sites/default/files/medien/479/bilder/gettyimages-693300197_peter_dazeley.jpg'
 
+ 
+api_key = os.environ.get("API_KEY")
 
-# OpenAI API Key
-api_key = ""
 headers = {
     "Content-Type": "application/json",
     "Authorization": f"Bearer {api_key}"
