@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <header>
+        <i class="fas fa-arrow-circle-left back-icon" onclick="window.location.href='main.html';"></i>
+    </header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="flower.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <iframe src="music.html" style="display:none;" allow="autoplay"></iframe>
+    <p></p>
+    <p></p>
+    <title>Grid of Growing Flowers with Local Storage</title>
+    <style>
+        #flower-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns grid */
+            gap: 10px;
+        }
+        .flower-svg {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            cursor: pointer; /* Indicate that the flower is clickable */
+        }
+        .flower-max-growth {
+            background-color: #ffeb3b; /* Yellow background for max growth */
+        }
+        button {
+            margin: 10px 10px 0 0;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <button class="buy" onclick="buyNewFlower()">Buy New Flower</button>
+    <button class="clear" onclick="clearStorage()">Clear Storage</button>
+    <i class="fa-solid fa-gamepad game-icon" onclick="window.location.href='game.html';"></i>
+</div>
+<div id="flower-container"></div>
+
+<script>
+    function seededRandom(seed) {
+        let x = Math.sin(seed) * 10000;
+        return x - Math.floor(x);
+    }
+
+    function generateFlower(seed, growth, index) {
+        const maxViewBoxSize = 100; // Set the maximum viewBox size
+        const flowerMaxSize = maxViewBoxSize * 0.8; // Max flower size is 80% of the viewBox
+        const minScale = 0.3; // Minimum scale (30% of maximum flower size)
+        const sizeScale = minScale + (growth / 100) * (1 - minScale); // Scale factor based on growth percentage
+        const flowerSize = flowerMaxSize * sizeScale; // Scale flower size according to growth
+
+        // Generate consistent petal properties based on seed
+        const numPetals = Math.floor(seededRandom(seed) * 10) + 5; // 5 to 15 petals
+        const petalLength = flowerSize * (0.5 + seededRandom(seed + 1) * 0.5); // Petal length varies from 50% to 100% of flower size
+        const petalWidth = flowerSize * (0.2 + seededRandom(seed + 2) * 0.3); // Petal width varies from 20% to 50% of flower size
+        const petalColor = ['red', 'pink', 'orange', 'purple', 'blue', 'green', 'yellow'][Math.floor(seededRandom(seed + 3) * 7)];
+        const petalRotationOffset = seededRandom(seed + 4) * 30 - 15; // Rotate within a range of Â±15 degrees for each petal
+        const centerColor = ['yellow', 'orange', 'white', 'brown'][Math.floor(seededRandom(seed + 5) * 4)];
+        const centerRadius = flowerSize * (0.1 + seededRandom(seed + 6) * 0.2); // Center radius varies from 10% to 30% of flower size
+
+        const svgClass = growth === 100 ? 'flower-svg flower-max-growth' : 'flower-svg'; // Add special class if growth is 100
+
+        let svg = `<svg class="${svgClass}" viewBox="0 0 ${maxViewBoxSize} ${maxViewBoxSize}" xmlns="http://www.w3.org/2000/svg" onclick="growFlower(${index})">`;
+
+        // Draw consistent petals
+        for (let i = 0; i < numPetals; i++) {
+            const angle = 2 * Math.PI * i / numPetals;
+            const petalX = maxViewBoxSize / 2 + Math.cos(angle) * (centerRadius + flowerSize * 0.5);
+            const petalY = maxViewBoxSize / 2 + Math.sin(angle) * (centerRadius + flowerSize * 0.5);
+            const petalRotation = angle * 180 / Math.PI + petalRotationOffset;
+
+            svg += `<ellipse cx="${petalX}" cy="${petalY}" rx="${petalWidth / 2}" ry="${petalLength / 2}" fill="${petalColor}" transform="rotate(${petalRotation}, ${petalX}, ${petalY})"/>`;
+        }
+
+        // Draw center
+        svg += `<circle cx="${maxViewBoxSize / 2}" cy="${maxViewBoxSize / 2}" r="${centerRadius}" fill="${centerColor}" />`;
+
+        svg += `</svg>`; // Close SVG tag
+
+        return svg;
+    }
+
+    function saveFlowersToLocalStorage(flowers) {
+        localStorage.setItem('flowers', JSON.stringify(flowers));
+    }
+
+    function loadFlowersFromLocalStorage() {
+        const storedFlowers = localStorage.getItem('flowers');
+        return storedFlowers ? JSON.parse(storedFlowers) : [];
+    }
+
+    function generateFlowerGrid() {
+        const flowerContainer = document.getElementById('flower-container');
+        const flowers = loadFlowersFromLocalStorage();
+
+        if (flowers.length === 0) {
+            flowerContainer.innerHTML = '<p>No flowers to display.</p>';
+            return;
+        }
+
+        flowerContainer.innerHTML = ''; // Clear the container before rendering
+        flowers.forEach((flower, index) => {
+            const flowerSvg = generateFlower(flower.seed, flower.growth, index);
+            flowerContainer.innerHTML += flowerSvg;
+        });
+    }
+
+    function growFlower(index) {
+        const flowers = loadFlowersFromLocalStorage();
+        if (flowers[index].growth < 100) {
+            flowers[index].growth += 1; // Increase growth by 1
+            saveFlowersToLocalStorage(flowers);
+            generateFlowerGrid(); // Re-render the grid with updated growth
+        }
+    }
+
+    function buyNewFlower() {
+        const flowers = loadFlowersFromLocalStorage();
+        const newSeed = Math.floor(Math.random() * 10000); // Random seed generation
+        const newFlower = { seed: newSeed, growth: 0 }; // Growth starts at 0 (30% size)
+        flowers.push(newFlower);
+        saveFlowersToLocalStorage(flowers);
+        generateFlowerGrid(); // Re-render the grid with the new flower
+    }
+
+    function clearStorage() {
+        localStorage.clear(); // Clear all items in localStorage
+        generateFlowerGrid(); // Re-render the grid, which should now be empty
+    }
+
+    // Generate the grid of flowers on page load
+    generateFlowerGrid();
+</script>
+
+</body>
+</html>
