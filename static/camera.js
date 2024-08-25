@@ -121,14 +121,16 @@ function postImage(data,action) {
     postData(url, post_data)
             .then(data => {
                 var result= JSON.stringify(data)
-                console.log('Success:',result);
+                //nomalize the result
+                nr= result.replace(/\*/g, "").replace(/\\n/g, "");
+                console.log('Success==========nr:',nr);
 
                 // Update the points circle
 
                 const pointsElement = document.getElementById('result');
-        if (pointsElement) {
-            pointsElement.textContent = result; // 
-        }
+                if (pointsElement) {
+                    pointsElement.textContent = nr; // 
+                }
                 
             })
             .catch((error) => {
@@ -136,46 +138,5 @@ function postImage(data,action) {
             });
 
 }
-
-function takepicture(action) {
 
  
-
-
-
-    var context = canvas.getContext('2d');
-    if (width && height) {
-        canvas.width = width;
-        canvas.height = height;
-        context.drawImage(video, 0, 0, width, height);
-
-        var data = canvas.toDataURL('image/png');
-        var post_data={
-            "user_id": 1,
-     "base64_image": data,
-     "funct": action
-        };
-      postData(url, post_data)
-            .then(data => {
-                var result= JSON.stringify(data)
-                console.log('Success:',result);
-
-                // Update the points circle
-
-                const pointsElement = document.getElementById('result');
-        if (pointsElement) {
-            pointsElement.textContent = result; // 
-        }
-                
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-
-        console.log(data); 
-        photo.setAttribute('src', data);
-    } else {
-        clearphoto();
-    }
-    toggle(0);
-}
