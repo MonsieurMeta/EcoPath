@@ -41,26 +41,7 @@ document.getElementById('rate-mode').addEventListener('click', () => {
     document.getElementById('sort-mode').classList.remove('active');
 });
 
-document.getElementById('take-photo').addEventListener('click', async () => {
-    let mode = document.querySelector('.toggle-button.active').id;
-    const video = document.getElementById('camera-stream');
-    const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0);
-    let image = canvas.toDataURL('image/jpeg');
 
-    fetch('http://localhost:3000/api/tasks', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ image: image, mode: mode === 'rate-mode' ? 'rate' : 'sort' })
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error processing image with OpenAI: ', error));
-});
 
 startCamera();
 const url = 'get_picture_description';
