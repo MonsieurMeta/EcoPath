@@ -8,11 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-localStorage.setItem('username', username);
-localStorage.setItem('password', password);
-localStorage.setItem('coinAmount', 0);
-localStorage.setItem('metersToday', 0);  // Initialize metersToday with 0
+function handleEnter(event) {
+    event.preventDefault();
 
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+    localStorage.setItem('coinAmount', 0);
+    localStorage.setItem('metersToday', 0);  // Initialize metersToday with 0
+}
 showLoading();
 
 function showLoading() {
