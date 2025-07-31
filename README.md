@@ -1,5 +1,5 @@
 # EcoPath
-all files
+AI-Driven waste sorting, sustainability, and ecofriendly planning webapp
 
 # Ecopath
 
